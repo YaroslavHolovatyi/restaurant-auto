@@ -1,0 +1,24 @@
+.language-selector-btn {
+  background: white;
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.language-selector-btn.active {
+  background: #222;
+  color: #fff;
+}
+
+.language-selector-divider {
+  color: #222;
+  font-weight: bold;
+  padding: 0 6px;
+  user-select: none;
+} 

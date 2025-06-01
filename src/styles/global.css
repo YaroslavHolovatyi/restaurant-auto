@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Luckiest+Guy&family=Quicksand:wght@400;600&display=swap');
+
+:root {
+  --bg: #FFF5E1;
+  --card: #FFF;
+  --accent: #F34C2D;
+  --accent2: #38B6FF;
+  --text: #191919;
+  --muted: #454545;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Quicksand', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 2rem;
+}
+
+h1, h2 {
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-family: 'Luckiest Guy', Arial, cursive;
+  color: var(--accent2);
+  margin-bottom: 0.5em;
+  letter-spacing: 1px;
+}
+
+p, li, button, input {
+  font-family: 'Quicksand', Arial, sans-serif;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.secondary-text {
+  color: var(--muted);
+}
+
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 100px;
+  border: none;
+  padding: 0.75em 2em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--accent2);
+  color: var(--text);
+} 

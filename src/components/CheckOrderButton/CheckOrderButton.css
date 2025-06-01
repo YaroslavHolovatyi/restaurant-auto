@@ -1,0 +1,33 @@
+.check-order-button {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--card);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+.check-order-button:hover {
+  background: var(--accent2);
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.order-total {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 1rem;
+} 

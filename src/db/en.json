@@ -1,0 +1,72 @@
+{
+  "navbar": {
+    "language": "EN",
+    "search": "Search",
+    "profile": "Profile",
+    "menu": "Menu"
+  },
+  "categories": {
+    "burgers": "BURGERS",
+    "extras": "EXTRAS",
+    "salads": "SALADS",
+    "fries": "FRIES",
+    "sauces": "SAUCES",
+    "drinks": "DRINKS"
+  },
+  "menu": {
+    "addToOrder": "Add to Order",
+    "new": "New"
+  },
+  "cart": {
+    "yourOrder": "Your Order",
+    "remove": "Remove",
+    "total": "Total:",
+    "completeOrder": "Complete Order",
+    "checkOrder": "Check Order"
+  },
+  "main": {
+    "title": "Boomer Burger",
+    "subtitle": "BEST BURGERS FOR THE BEST GENERATION"
+  },
+  "sideMenu": {
+    "tables": "List of Tables",
+    "createMenu": "Create New Menu Option",
+    "addUser": "Add a User"
+  },
+  "createMenuItem": {
+    "title": "Create New Menu Item",
+    "name": "Name",
+    "price": "Price",
+    "description": "Description",
+    "category": "Category",
+    "image": "Image",
+    "chooseImage": "Choose Image",
+    "weight": "Weight",
+    "isNew": "Is New",
+    "available": "Available",
+    "create": "Create",
+    "success": "Menu item created (mock)!"
+  },
+  "tables": {
+    "title": "Tables",
+    "seats": "Seats",
+    "status": "Status",
+    "order": "Order",
+    "total": "Total",
+    "makeOrder": "Make Order",
+    "orderStatus": "Order Status",
+    "ordered": "Ordered",
+    "cooking": "Cooking",
+    "ready": "Ready"
+  },
+  "roles": {
+    "admin": "Admin",
+    "cook": "Cook",
+    "waiter": "Waiter"
+  },
+  "dialogs": {
+    "close": "Close",
+    "accept": "Accept",
+    "reject": "Reject"
+  }
+} 

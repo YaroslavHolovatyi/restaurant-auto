@@ -1,0 +1,27 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const orderSlice = createSlice({
+  name: 'order',
+  initialState: {
+    items: [],
+    isOrderPopupOpen: false,
+  },
+  reducers: {
+    addItem: (state, action) => {
+      state.items.push(action.payload);
+    },
+    clearOrder: (state) => {
+      state.items = [];
+      state.isOrderPopupOpen = false;
+    },
+    openOrderPopup: (state) => {
+      state.isOrderPopupOpen = true;
+    },
+    closeOrderPopup: (state) => {
+      state.isOrderPopupOpen = false;
+    },
+  },
+});
+
+export const { addItem, clearOrder, openOrderPopup, closeOrderPopup } = orderSlice.actions;
+export default orderSlice.reducer;

@@ -1,0 +1,133 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: transparent;
+  backdrop-filter: blur(8px);
+}
+
+.logo-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+.logo-container:active {
+  transform: scale(0.95);
+}
+
+.logo{
+  max-width: 32px;
+  max-height: 32px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-button {
+  min-width: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  color: #333 !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-button:hover {
+  background: #f8f8f8 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+.nav-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.nav-button.language {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 12px;
+  width: auto !important;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-button .material-icons {
+  font-size: 20px;
+}
+
+.nav-button.language .material-icons {
+  margin-left: 2px;
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  .navbar {
+    padding: 16px 24px;
+  }
+
+  .controls {
+    gap: 12px;
+  }
+
+  .nav-button.language {
+    padding: 0 16px;
+  }
+
+  .logo-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .logo-container svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .nav-button.language {
+    font-size: 14px;
+  }
+
+  .nav-button .material-icons {
+    font-size: 24px;
+  }
+
+  .nav-button.language .material-icons {
+    margin-left: 4px;
+    font-size: 20px;
+  }
+}

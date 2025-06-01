@@ -1,0 +1,72 @@
+{
+  "navbar": {
+    "language": "UA",
+    "search": "Пошук",
+    "profile": "Профіль",
+    "menu": "Меню"
+  },
+  "categories": {
+    "burgers": "БУРГЕРИ",
+    "extras": "ДО БУРГЕРІВ",
+    "salads": "САЛАТИ",
+    "fries": "КАРТОПЛЯ",
+    "sauces": "СОУСИ",
+    "drinks": "НАПОЇ"
+  },
+  "menu": {
+    "addToOrder": "Додати до замовлення",
+    "new": "Нове"
+  },
+  "cart": {
+    "yourOrder": "Ваше замовлення",
+    "remove": "Видалити",
+    "total": "Всього:",
+    "completeOrder": "Завершити замовлення",
+    "checkOrder": "Перевірити замовлення"
+  },
+  "main": {
+    "title": "Boomer Burger",
+    "subtitle": "НАЙКРАЩІ БУРГЕРИ ДЛЯ НАЙКРАЩОГО ПОКОЛІННЯ"
+  },
+  "sideMenu": {
+    "tables": "Список столів",
+    "createMenu": "Створити нову позицію меню",
+    "addUser": "Додати користувача"
+  },
+  "createMenuItem": {
+    "title": "Створити нову позицію меню",
+    "name": "Назва",
+    "price": "Ціна",
+    "description": "Опис",
+    "category": "Категорія",
+    "image": "Зображення",
+    "chooseImage": "Вибрати зображення",
+    "weight": "Вага",
+    "isNew": "Нове",
+    "available": "Доступно",
+    "create": "Створити",
+    "success": "Позицію меню створено (мок)!"
+  },
+  "tables": {
+    "title": "Столи",
+    "seats": "Місць",
+    "status": "Статус",
+    "order": "Замовлення",
+    "total": "Всього",
+    "makeOrder": "Зробити замовлення",
+    "orderStatus": "Статус замовлення",
+    "ordered": "Замовлено",
+    "cooking": "Готується",
+    "ready": "Готово"
+  },
+  "roles": {
+    "admin": "Адмін",
+    "cook": "Кухар",
+    "waiter": "Офіціант"
+  },
+  "dialogs": {
+    "close": "Закрити",
+    "accept": "Прийняти",
+    "reject": "Відхилити"
+  }
+} 
