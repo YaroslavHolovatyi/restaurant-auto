@@ -1,0 +1,434 @@
+[{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35928"
+  },
+  "name": "Зелений салат з мічеладою",
+  "price": 250,
+  "currency": "UAH",
+  "description": "Ромен, шпинат, рукола, соус вінiгер, мічелада, цедра лимону.",
+  "category": "salads",
+  "image_url": "/uploads/image1.jpeg",
+  "weight": null,
+  "is_new": true,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35929"
+  },
+  "name": "@epic.boomer salad",
+  "price": 258,
+  "currency": "UAH",
+  "description": "Айсберг, шпинат, рукола, анчоуси, айолі, стегно куряче, пармезан.",
+  "category": "salads",
+  "image_url": "/uploads/image2.jpeg",
+  "weight": "280г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3592a"
+  },
+  "name": "Crispy Chilli falafel",
+  "price": 199,
+  "currency": "UAH",
+  "description": "Фалафель, грецький йогурт, чилі пластівці, тахін, кінза.",
+  "category": "extras",
+  "image_url": "/uploads/image3.jpeg",
+  "weight": null,
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3592b"
+  },
+  "name": "Mozzarella fries",
+  "price": 225,
+  "currency": "UAH",
+  "description": "Сир, що тягнеться to the moon and back 🧀",
+  "category": "extras",
+  "image_url": "/uploads/image4.jpeg",
+  "weight": "150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3592c"
+  },
+  "name": "Картопляні діпи",
+  "price": 165,
+  "currency": "UAH",
+  "description": "Epic potato😋",
+  "category": "extras",
+  "image_url": "/uploads/image5.jpeg",
+  "weight": "150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3592d"
+  },
+  "name": "Сирна ванна",
+  "price": 160,
+  "currency": "UAH",
+  "description": "З пармезаном.",
+  "category": "extras",
+  "image_url": "/uploads/image6.jpeg",
+  "weight": "125г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3592e"
+  },
+  "name": "Блакитний сир",
+  "price": 165,
+  "currency": "UAH",
+  "description": "Додай до будь-якого бургера 🧀",
+  "category": "extras",
+  "image_url": "/uploads/image7.jpeg",
+  "weight": "90г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3592f"
+  },
+  "name": "Соус айолі",
+  "price": 40,
+  "currency": "UAH",
+  "description": "Епічно ніжний👀",
+  "category": "sauces",
+  "image_url": "/uploads/image8.jpeg",
+  "weight": "50г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35930"
+  },
+  "name": "Соус айолі шрірачи",
+  "price": 40,
+  "currency": "UAH",
+  "description": "Гострий🌶️🔥",
+  "category": "sauces",
+  "image_url": "/uploads/image9.jpeg",
+  "weight": "50г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35931"
+  },
+  "name": "Соус трюфельне айолі",
+  "price": 40,
+  "currency": "UAH",
+  "description": "З тим самим трюфелем😝",
+  "category": "sauces",
+  "image_url": "/uploads/image10.jpeg",
+  "weight": "50г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35932"
+  },
+  "name": "Соус пелатті",
+  "price": 40,
+  "currency": "UAH",
+  "description": "🍅",
+  "category": "sauces",
+  "image_url": "/uploads/image11.jpeg",
+  "weight": "50г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35933"
+  },
+  "name": "Соус барбекю",
+  "price": 40,
+  "currency": "UAH",
+  "description": "Твій улюблений соус!",
+  "category": "sauces",
+  "image_url": "/uploads/image12.jpeg",
+  "weight": "50г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35934"
+  },
+  "name": "MOZZARELLA BURGER",
+  "price": 435,
+  "currency": "UAH",
+  "description": "Супер булочка, яловича котлета, сир чеддер, смородиновий джем, соус айолі, бекон, моцарела в паніровці, хрустка цибуля.",
+  "category": "burgers",
+  "image_url": "/uploads/image13.jpeg",
+  "weight": "410/150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35935"
+  },
+  "name": "SHRIMP BURGER",
+  "price": 570,
+  "currency": "UAH",
+  "description": "Супер булочка, яловича котлета, креветки в паніровці, соус тао тао, соус айолі шрірачи, сир чеддер.",
+  "category": "burgers",
+  "image_url": "/uploads/image14.jpeg",
+  "weight": "460/150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35936"
+  },
+  "name": "CHIPOTLE BURGER",
+  "price": 450,
+  "currency": "UAH",
+  "description": "Супер булочка, яловича котлета, бекон в кленовому сиропі, спеції Chipotle, кінза, хрустка цибуля, сир чеддер, барбекю, авокадо та айолі.",
+  "category": "burgers",
+  "image_url": "/uploads/image15.jpeg",
+  "weight": "390/150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35937"
+  },
+  "name": "КАРТОПЛЯ ФРІ БАТАТ",
+  "price": 310,
+  "currency": "UAH",
+  "description": "Подається з соусом айолі.",
+  "category": "fries",
+  "image_url": "/uploads/image16.jpeg",
+  "weight": "250г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35938"
+  },
+  "name": "CHEESE BACON FRIES",
+  "price": 295,
+  "currency": "UAH",
+  "description": "Картопляні діпи, сирний соус чеддер, соус сирний, бекон, пармезан.",
+  "category": "fries",
+  "image_url": "/uploads/image17.jpeg",
+  "weight": "380г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35939"
+  },
+  "name": "TRUFFLE FRIES",
+  "price": 285,
+  "currency": "UAH",
+  "description": "Картопляні діпи, сирний соус чеддер, айолі трюфельне, печериці, олія трюфельна, хрустка цибуля, пармезан.",
+  "category": "fries",
+  "image_url": "/uploads/image18.jpeg",
+  "weight": "340г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3593a"
+  },
+  "name": "ГОЛОВНИЙ БУРГЕР",
+  "price": 656,
+  "currency": "UAH",
+  "description": "Супер булочка, яловичина, чеддер, карамелізована цибуля, бекон, соус айолі, хрустка цибуля. Подаю з картопляними діпами, айолі з карамелізованої цибулі, сирною ванною.",
+  "category": "burgers",
+  "image_url": "/uploads/image19.jpeg",
+  "weight": null,
+  "is_new": true,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3593b"
+  },
+  "name": "EPIC CHEESEBURGER V - 1.0",
+  "price": 455,
+  "currency": "UAH",
+  "description": "Супер булочка, яловича котлета, сир чеддер, хрустка цибуля, айолі, пармезан, бекон. Подаю з сирною ванною і картопляними діпами. Найкраще смакує з Baladin Wayan.",
+  "category": "burgers",
+  "image_url": "/uploads/image20.jpeg",
+  "weight": "360/125/150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3593c"
+  },
+  "name": "EPIC CHEESEBURGER V - 2.0",
+  "price": 615,
+  "currency": "UAH",
+  "description": "Супер булочка, подвійна яловича котлета, хрустка цибуля, бекон, сирний соус, пармезан, айолі. Подаю з сирною ванною і картопляними діпами. Найкраще смакує з Asahi Super Dry.",
+  "category": "burgers",
+  "image_url": "/uploads/image21.jpeg",
+  "weight": "630/125/150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3593d"
+  },
+  "name": "HAPPY COW BURGER",
+  "price": 505,
+  "currency": "UAH",
+  "description": "Супер булочка, соус айолі, фалафель, авокадо, томати, шпинат, хрустка цибуля, сир тофу.",
+  "category": "burgers",
+  "image_url": "/uploads/image22.jpeg",
+  "weight": null,
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3593e"
+  },
+  "name": "МОКРИЙ ДЖО",
+  "price": 580,
+  "currency": "UAH",
+  "description": "Супер булочка, сир чеддер, соус Sloppy Joes, часникове айолі, яловича котлета, сир чеддер, сирний соус, пармезан. Подаю з картопляними діпами та маринованими огірками.",
+  "category": "burgers",
+  "image_url": "/uploads/image23.jpeg",
+  "weight": "640/150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae3593f"
+  },
+  "name": "50/50 BURGER",
+  "price": 435,
+  "currency": "UAH",
+  "description": "Супер булочка, соус айолі, сир чеддер, 50% бекон, 50% яловичина, кімчі, пластівці чилі. Подаю з ферментованою капустою і картопляними діпами.",
+  "category": "burgers",
+  "image_url": "/uploads/image24.jpeg",
+  "weight": "380/130/150г",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35940"
+  },
+  "name": "ALL RIGHT LEMONADE",
+  "price": 110,
+  "currency": "UAH",
+  "description": "Lemon-Lime Cordial, Mint, Monin Violet, Soda. Лимонно-лаймовий, освіжаючий, з присмаком фіалки.",
+  "category": "drinks",
+  "image_url": "/uploads/image25.jpeg",
+  "weight": null,
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35941"
+  },
+  "name": "DIRTY POP",
+  "price": 110,
+  "currency": "UAH",
+  "description": "Strawberry Cordial, Homemade cola Cordial, cordial, Soda. Полунично-кола-смачно і прикольно.",
+  "category": "drinks",
+  "image_url": "/uploads/image26.jpeg",
+  "weight": null,
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35942"
+  },
+  "name": "Homemade cola lemonade to go",
+  "price": 100,
+  "currency": "UAH",
+  "description": "Зроблений лише з органічних складників та додаванням горіху кола та мускатного горіху.",
+  "category": "drinks",
+  "image_url": "/uploads/image27.jpeg",
+  "weight": "300мл",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35943"
+  },
+  "name": "Напій Fanta",
+  "price": 80,
+  "currency": "UAH",
+  "description": "250 ml",
+  "category": "drinks",
+  "image_url": "/uploads/image28.jpeg",
+  "weight": "250мл",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35944"
+  },
+  "name": "Напій Sprite",
+  "price": 80,
+  "currency": "UAH",
+  "description": "250 ml",
+  "category": "drinks",
+  "image_url": "/uploads/image29.jpeg",
+  "weight": "250мл",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35945"
+  },
+  "name": "Напій Coca-Cola",
+  "price": 80,
+  "currency": "UAH",
+  "description": "250 ml",
+  "category": "drinks",
+  "image_url": "/uploads/image30.jpeg",
+  "weight": "250мл",
+  "is_new": false,
+  "available": true
+},
+{
+  "_id": {
+    "$oid": "683ba5aa3846ca0baae35946"
+  },
+  "name": "Coca-cola Zero",
+  "price": 80,
+  "currency": "UAH",
+  "description": "Without sugar.",
+  "category": "drinks",
+  "image_url": "/uploads/image31.jpeg",
+  "weight": "250мл",
+  "is_new": false,
+  "available": true
+}]

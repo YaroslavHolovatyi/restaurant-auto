@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "683bab967de7afba09c4817a"
+  },
+  "name": "Admin User",
+  "username": "admin",
+  "password": "admin",
+  "role": "admin",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683bab967de7afba09c4817b"
+  },
+  "name": "Cook User",
+  "username": "cook",
+  "password": "cook",
+  "role": "cook",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683bab967de7afba09c4817c"
+  },
+  "name": "Waiter User",
+  "username": "waiter",
+  "password": "waiter",
+  "role": "waiter",
+  "__v": 0
+}]

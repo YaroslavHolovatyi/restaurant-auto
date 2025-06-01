@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "683b9bb73846ca0baae358c1"
+  },
+  "name": "Зелений салат з міні овочами",
+  "price": 20,
+  "currency": "UAH",
+  "description": "Ромен, шпинат, рукола, соус вінiгер, мічелада, цедра лимону.",
+  "category": "salads",
+  "image_url": "../assets/formenu/image1.png",
+  "weight": null,
+  "is_new": true,
+  "available": true,
+  "status": "pending",
+  "author": "cook"
+}]
