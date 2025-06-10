@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { login as reduxLogin } from '../../store/userSlice';
+import React, { useState } from "react";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  TextField,
+} from "@mui/material";
+import { useDispatch } from "react-redux";
+import { login as reduxLogin } from "../../store/userSlice";
 
 interface LoginDialogProps {
   open: boolean;
@@ -10,33 +17,43 @@ interface LoginDialogProps {
 
 const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose }) => {
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async () => {
     if (!username || !password) {
-      setError('Please fill in all fields');
+      setError("Please fill in all fields");
       return;
     }
-    setError('');
+    setError("");
     try {
-      const res = await fetch('http://localhost:5000/api/staff/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+      const res = await fetch("http://localhost:5000/api/staff/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
       });
-      if (!res.ok) throw new Error('Invalid credentials');
+      if (!res.ok) throw new Error("Invalid credentials");
       const user = await res.json();
-      dispatch(reduxLogin({
-        username: user.username,
-        name: user.name,
-        role: user.role,
-        email: user.email || ''
-      }));
+
+      // Store the JWT token
+      if (user.token) {
+        localStorage.setItem("token", user.token);
+        console.log("Token stored in localStorage");
+      }
+
+      dispatch(
+        reduxLogin({
+          username: user.username,
+          name: user.name,
+          role: user.role,
+          email: user.email || "",
+          token: user.token,
+        })
+      );
       onClose();
     } catch (err) {
-      setError('Invalid username or password');
+      setError("Invalid username or password");
     }
   };
 
@@ -49,7 +66,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose }) => {
           fullWidth
           margin="normal"
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
           label="Password"
@@ -57,16 +74,18 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose }) => {
           fullWidth
           margin="normal"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
+        {error && <div style={{ color: "red", marginTop: 8 }}>{error}</div>}
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={handleLogin} variant="contained" color="primary">Login</Button>
+        <Button onClick={handleLogin} variant="contained" color="primary">
+          Login
+        </Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default LoginDialog; 
+export default LoginDialog;

@@ -1,14 +1,20 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const OrderSchema = new mongoose.Schema({
   tableNumber: { type: Number, required: true },
-  items: [{
-    name: String,
-    price: Number,
-    quantity: Number
-  }],
-  status: { type: String, enum: ['ordered', 'cooking', 'ready'], default: 'ordered' },
-  createdAt: { type: Date, default: Date.now }
+  items: [
+    {
+      name: String,
+      price: Number,
+      quantity: Number,
+    },
+  ],
+  status: {
+    type: String,
+    enum: ["ordered", "cooking", "ready"],
+    default: "ordered",
+  },
+  createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Order', OrderSchema); 
+module.exports = mongoose.model("Order", OrderSchema);
