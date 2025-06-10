@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { getAuthToken, getAuthHeader } from "../utils/authUtils";
 
 const categories = [
   { value: "burgers", label: "Burgers" },
@@ -157,8 +158,8 @@ const CreateMenuItemPage: React.FC = () => {
       }
       if (role === "admin") {
         // Admin can create dishes directly
-        // Get token from Redux state or local storage
-        const token = user.token || localStorage.getItem("token");
+        // Get token using our utility function
+        const token = getAuthToken();
 
         console.log(
           "Using admin token:",
@@ -169,14 +170,20 @@ const CreateMenuItemPage: React.FC = () => {
           await axios.post("http://localhost:5000/api/menu", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${token}`,
+              ...getAuthHeader(),
             },
           });
-        } catch (authError: any) {
-          console.error("Auth error details:", authError.response?.data);
+        } catch (authError: unknown) {
+          const errorResponse = authError as {
+            response?: { data?: { message?: string } };
+            message?: string;
+          };
+          console.error("Auth error details:", errorResponse.response?.data);
           throw new Error(
             `Authentication failed: ${
-              authError.response?.data?.message || authError.message
+              errorResponse.response?.data?.message ||
+              errorResponse.message ||
+              "Unknown error"
             }`
           );
         }
@@ -271,11 +278,10 @@ const CreateMenuItemPage: React.FC = () => {
     }
   }, [role, tabValue, success]);
   const handleAccept = async (id: string) => {
-    const token = user.token || localStorage.getItem("token");
     await fetch(`http://localhost:5000/api/menuOffers/${id}/accept`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        ...getAuthHeader(),
       },
     });
     setSuccess(true);
@@ -286,6 +292,9 @@ const CreateMenuItemPage: React.FC = () => {
   const handleReject = async (id: string) => {
     await fetch(`http://localhost:5000/api/menuOffers/${id}/reject`, {
       method: "POST",
+      headers: {
+        ...getAuthHeader(),
+      },
     });
     setSuccess(true);
     setTimeout(() => setSuccess(false), 2000);

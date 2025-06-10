@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { login as reduxLogin } from "../../store/userSlice";
+import { storeAuthToken, updateLastActivity } from "../../utils/authUtils";
 
 interface LoginDialogProps {
   open: boolean;
@@ -38,8 +39,12 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose }) => {
 
       // Store the JWT token
       if (user.token) {
-        localStorage.setItem("token", user.token);
-        console.log("Token stored in localStorage");
+        storeAuthToken(user.token, true);
+        // Initialize activity tracking
+        updateLastActivity();
+        console.log(
+          "Token stored in auth storage and activity tracking initialized"
+        );
       }
 
       dispatch(

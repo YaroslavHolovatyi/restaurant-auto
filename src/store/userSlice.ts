@@ -47,8 +47,15 @@ const userSlice = createSlice({
       state.username = "";
       state.token = null;
       state.profile = null;
-      // Also clear from localStorage
+
+      // Clear all auth-related storage
       localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("user");
+
+      // Additional cleanup for any other user-related data
+      sessionStorage.removeItem("lastActivity");
+      localStorage.removeItem("userPreferences");
     },
   },
 });
