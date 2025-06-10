@@ -42,22 +42,6 @@ interface MenuItem {
   available: boolean;
 }
 
-interface MenuOffer {
-  _id: string;
-  name: string;
-  status: string;
-  description: string;
-  price: number;
-  category: string;
-}
-
-interface UserProfile {
-  _id?: string;
-  name: string;
-  email: string;
-  role: string;
-}
-
 // Mock data for cook's menu items
 const cookMenuItems: MenuItem[] = [
   {
@@ -193,21 +177,15 @@ const CreateMenuItemPage: React.FC = () => {
         offerFormData.append("name", form.name);
         offerFormData.append("price", form.price);
         offerFormData.append("description", form.description);
-        offerFormData.append("category", form.category);
-        offerFormData.append("weight", form.weight);
+        offerFormData.append("category", form.category);        offerFormData.append("weight", form.weight);
         offerFormData.append("is_new", form.is_new.toString());
         offerFormData.append("available", form.available.toString());
-        offerFormData.append(
-          "createdBy",
-          (user.profile as UserProfile)?._id || ""
-        );
+        offerFormData.append("author", user.profile?.role || "cook");
 
         if (form.image) {
           offerFormData.append("image", form.image);
-        }
-
-        await axios.post(
-          "http://localhost:5000/api/menuOffers",
+        }        await axios.post(
+          "http://localhost:5000/api/recipes",
           offerFormData,
           {
             headers: {
@@ -263,42 +241,50 @@ const CreateMenuItemPage: React.FC = () => {
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
-
   useEffect(() => {
     if (role === "admin" && tabValue === 1) {
       setLoading(true);
-      fetch("http://localhost:5000/api/menuOffers")
+      fetch("http://localhost:5000/api/recipes/pending")
         .then((res) => res.json())
-        .then((data) =>
-          setPendingOffers(
-            data.filter((o: MenuOffer) => o.status === "pending")
-          )
-        )
+        .then((data) => setPendingOffers(data))
+        .catch((err) => {
+          console.error("Error fetching pending recipes:", err);
+          setError("Failed to load pending items");
+        })
         .finally(() => setLoading(false));
     }
-  }, [role, tabValue, success]);
-  const handleAccept = async (id: string) => {
-    await fetch(`http://localhost:5000/api/menuOffers/${id}/accept`, {
-      method: "POST",
-      headers: {
-        ...getAuthHeader(),
-      },
-    });
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 2000);
-    setPendingOffers(pendingOffers.filter((o) => o._id !== id));
+  }, [role, tabValue, success]);  const handleAccept = async (id: string) => {
+    try {
+      await fetch(`http://localhost:5000/api/recipes/${id}/accept`, {
+        method: "POST",
+        headers: {
+          ...getAuthHeader(),
+        },
+      });
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 2000);
+      setPendingOffers(pendingOffers.filter((o) => o._id !== id));
+    } catch (error) {
+      console.error("Error accepting recipe:", error);
+      setError("Failed to accept recipe");
+    }
   };
 
   const handleReject = async (id: string) => {
-    await fetch(`http://localhost:5000/api/menuOffers/${id}/reject`, {
-      method: "POST",
-      headers: {
-        ...getAuthHeader(),
-      },
-    });
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 2000);
-    setPendingOffers(pendingOffers.filter((o) => o._id !== id));
+    try {
+      await fetch(`http://localhost:5000/api/recipes/${id}/reject`, {
+        method: "POST",
+        headers: {
+          ...getAuthHeader(),
+        },
+      });
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 2000);
+      setPendingOffers(pendingOffers.filter((o) => o._id !== id));
+    } catch (error) {
+      console.error("Error rejecting recipe:", error);
+      setError("Failed to reject recipe");
+    }
   };
 
   const renderCreateForm = () => (
@@ -405,40 +391,193 @@ const CreateMenuItemPage: React.FC = () => {
       {error && <Alert severity="error">{error}</Alert>}
     </form>
   );
-
   const renderPendingItems = () => (
     <div>
-      <h3>Pending Menu Items</h3>
+      <h3 style={{ marginBottom: "1.5rem", color: "#333" }}>
+        Pending Menu Items
+      </h3>
       {loading ? (
-        <p>Loading...</p>
+        <div style={{ textAlign: "center", padding: "2rem" }}>
+          <p>Loading pending items...</p>
+        </div>
+      ) : pendingOffers.length === 0 ? (
+        <div style={{ textAlign: "center", padding: "2rem", color: "#666" }}>
+          <p>No pending items to review</p>
+        </div>
       ) : (
-        <ul>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "1rem",
+          }}
+        >
           {pendingOffers.map((item) => (
-            <li
+            <div
               key={item._id}
+              style={{
+                border: "1px solid #e0e0e0",
+                borderRadius: "12px",
+                padding: "1.5rem",
+                backgroundColor: "#fff",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+                position: "relative",
+              }}
               onClick={() => handleItemClick(item)}
-              style={{ cursor: "pointer" }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
+              }}
             >
-              {item.name} - {item.status}
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleAccept(item._id);
+              {/* Status Badge */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "12px",
+                  right: "12px",
+                  backgroundColor: "#ff9800",
+                  color: "white",
+                  padding: "4px 8px",
+                  borderRadius: "12px",
+                  fontSize: "0.75rem",
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
                 }}
               >
-                Accept
-              </Button>
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleReject(item._id);
+                {item.status}
+              </div>
+
+              {/* Item Image */}
+              {item.image_url && (
+                <div style={{ marginBottom: "1rem" }}>
+                  <img
+                    src={item.image_url}
+                    alt={item.name}
+                    style={{
+                      width: "100%",
+                      height: "150px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                    }}
+                  />
+                </div>
+              )}
+
+              {/* Item Info */}
+              <div style={{ marginBottom: "1rem" }}>
+                <h4
+                  style={{
+                    margin: "0 0 0.5rem 0",
+                    color: "#333",
+                    fontSize: "1.25rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.name}
+                </h4>
+                <p
+                  style={{
+                    margin: "0 0 0.5rem 0",
+                    color: "#666",
+                    fontSize: "0.9rem",
+                    lineHeight: "1.4",
+                  }}
+                >
+                  {item.description}
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginTop: "0.75rem",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "1.1rem",
+                      fontWeight: "bold",
+                      color: "#2e7d32",
+                    }}
+                  >
+                    {item.price} UAH
+                  </span>
+                  <span
+                    style={{
+                      backgroundColor: "#f5f5f5",
+                      padding: "4px 8px",
+                      borderRadius: "8px",
+                      fontSize: "0.8rem",
+                      color: "#666",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {item.category}
+                  </span>
+                </div>
+                {item.weight && (
+                  <p
+                    style={{
+                      margin: "0.5rem 0 0 0",
+                      color: "#888",
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    Weight: {item.weight}
+                  </p>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.5rem",
+                  marginTop: "1rem",
                 }}
               >
-                Reject
-              </Button>
-            </li>
+                <Button
+                  variant="contained"
+                  color="success"
+                  size="small"
+                  style={{
+                    flex: 1,
+                    textTransform: "none",
+                    fontWeight: "bold",
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAccept(item._id);
+                  }}
+                >
+                  ✓ Accept
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  style={{
+                    flex: 1,
+                    textTransform: "none",
+                    fontWeight: "bold",
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleReject(item._id);
+                  }}
+                >
+                  ✗ Reject
+                </Button>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

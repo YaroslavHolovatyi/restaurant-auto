@@ -32,6 +32,7 @@ app.use('/api/tables', require('./routes/tables'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/menuOffers', require('./routes/menuOffers'));
 app.use('/api/menu', require('./routes/menu'));
+app.use('/api/recipes', require('./routes/recipes'));
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 

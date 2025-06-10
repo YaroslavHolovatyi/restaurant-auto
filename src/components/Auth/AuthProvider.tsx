@@ -37,7 +37,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
       return true;
     }
     return false;
-  };  // Setup inactivity tracking
+  }; // Setup inactivity tracking
   useEffect(() => {
     if (isLoggedIn) {
       // Initialize the lastActivity on login
