@@ -19,15 +19,25 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   fileFilter: function (req, file, cb) {
-    const filetypes = /jpeg|jpg|png/;
-    const mimetype = filetypes.test(file.mimetype);
+    // Check MIME type
+    if (
+      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/png"
+    ) {
+      return cb(null, true);
+    }
+
+    // Also check file extension as backup
+    const filetypes = /\.(jpeg|jpg|png)$/i;
     const extname = filetypes.test(
       path.extname(file.originalname).toLowerCase()
     );
 
-    if (mimetype && extname) {
+    if (extname) {
       return cb(null, true);
     }
+
     cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
   },
 });
@@ -52,6 +62,16 @@ router.get("/pending", async (req, res) => {
   }
 });
 
+// Get recipes by author
+router.get("/author/:author", async (req, res) => {
+  try {
+    const recipes = await Recipe.find({ author: req.params.author });
+    res.json(recipes);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Create a new recipe
 router.post("/", upload.single("image"), async (req, res) => {
   try {
@@ -63,7 +83,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       weight,
       is_new,
       available,
-      author
+      author,
     } = req.body;
 
     const recipeData = {
@@ -75,7 +95,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       is_new: is_new === "true",
       available: available === "true",
       author: author || "cook",
-      status: "pending"
+      status: "pending",
     };
 
     if (req.file) {
