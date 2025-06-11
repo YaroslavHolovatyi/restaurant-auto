@@ -9,8 +9,7 @@ interface SideMenuProps {
 }
 
 const SideMenu: React.FC<SideMenuProps> = ({ onSelect, onClose, role }) => {
-  const navigate = useNavigate();
-  const handleClick = (key: string) => {
+  const navigate = useNavigate();  const handleClick = (key: string) => {
     if (key === 'tables') {
       navigate('/tables');
     }
@@ -20,12 +19,15 @@ const SideMenu: React.FC<SideMenuProps> = ({ onSelect, onClose, role }) => {
     if (key === 'add-user') {
       navigate('/add-user');
     }
+    if (key === 'orders') {
+      navigate('/orders');
+    }
     onSelect(key);
     onClose();
-  };
-  return (
+  };  return (
     <div className="side-menu">
       <button className="side-menu-btn" onClick={() => handleClick('tables')}>List of Tables</button>
+      <button className="side-menu-btn" onClick={() => handleClick('orders')}>Orders</button>
       {(role === 'admin' || role === 'cook') && (
         <button className="side-menu-btn" onClick={() => handleClick('create-menu')}>Create New Menu Option</button>
       )}

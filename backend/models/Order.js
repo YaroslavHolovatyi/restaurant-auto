@@ -9,6 +9,7 @@ const OrderSchema = new mongoose.Schema({
       quantity: Number,
     },
   ],
+  waiterId: { type: String, required: true },
   status: {
     type: String,
     enum: ["ordered", "cooking", "ready"],

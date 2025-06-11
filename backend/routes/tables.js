@@ -24,8 +24,22 @@ router.post('/', async (req, res) => {
 
 // Update a table
 router.put('/:id', async (req, res) => {
-  const table = await Table.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(table);
+  try {
+    console.log('Updating table with ID:', req.params.id);
+    console.log('Request body:', req.body);
+    
+    const table = await Table.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    
+    if (!table) {
+      return res.status(404).json({ error: 'Table not found' });
+    }
+    
+    console.log('Updated table:', table);
+    res.json(table);
+  } catch (error) {
+    console.error('Error updating table:', error);
+    res.status(500).json({ error: 'Failed to update table', details: error.message });
+  }
 });
 
 // Delete a table

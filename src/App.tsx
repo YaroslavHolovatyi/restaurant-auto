@@ -11,6 +11,7 @@ import ProfilePage from "./pages/ProfilePage";
 import TablesPage from "./pages/TablesPage";
 import CreateMenuItemPage from "./pages/CreateMenuItemPage";
 import AddUserPage from "./pages/AddUserPage";
+import OrdersPage from "./pages/OrdersPage";
 import AuthProvider from "./components/Auth/AuthProvider";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 
@@ -55,6 +56,14 @@ const App: React.FC = () => {
                   element={
                     <ProtectedRoute requiredRole="admin">
                       <AddUserPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/orders"
+                  element={
+                    <ProtectedRoute>
+                      <OrdersPage />
                     </ProtectedRoute>
                   }
                 />

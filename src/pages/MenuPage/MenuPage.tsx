@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { addItem } from '../../store/cartSlice';
-import './MenuPage.css';
-import Cart from '../../components/Cart/Cart';
-import CheckOrderButton from '../../components/CheckOrderButton/CheckOrderButton';
-import { useTranslation } from 'react-i18next';
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../../store/cartSlice";
+import type { RootState } from "../../store/store";
+import "./MenuPage.css";
+import Cart from "../../components/Cart/Cart";
+import CheckOrderButton from "../../components/CheckOrderButton/CheckOrderButton";
+import { useTranslation } from "react-i18next";
 
 interface Dish {
   _id: string;
@@ -26,16 +27,25 @@ interface Category {
   dishes: Dish[];
 }
 
-const categoryIds = ['burgers', 'extras', 'salads', 'fries', 'sauces', 'drinks'];
+const categoryIds = [
+  "burgers",
+  "extras",
+  "salads",
+  "fries",
+  "sauces",
+  "drinks",
+];
 
 const MenuPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
+  const userRole = user.profile?.role;
   const [activeCategory, setActiveCategory] = useState<string>(() => {
     const state = location.state as { initialCategory?: string } | null;
-    return state?.initialCategory || 'burgers';
+    return state?.initialCategory || "burgers";
   });
   const [dishes, setDishes] = useState<Dish[]>([]);
   const categoryRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -44,20 +54,22 @@ const MenuPage: React.FC = () => {
   const initialScrollDone = useRef(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/dishes')
-      .then(res => res.json())
+    fetch("http://localhost:5000/api/dishes")
+      .then((res) => res.json())
       .then(setDishes);
   }, []);
 
   // Process dishes data into categories
-  const processedCategories: Category[] = categoryIds.map(id => ({
+  const processedCategories: Category[] = categoryIds.map((id) => ({
     id,
     name: t(`categories.${id}`),
-    dishes: []
+    dishes: [],
   }));
 
   dishes.forEach((dish: Dish) => {
-    const category = processedCategories.find(cat => cat.id === dish.category);
+    const category = processedCategories.find(
+      (cat) => cat.id === dish.category
+    );
     if (category) {
       category.dishes.push(dish);
     }
@@ -79,30 +91,34 @@ const MenuPage: React.FC = () => {
     setActiveCategory(categoryId);
     const element = categoryRefs.current[categoryId];
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   const handleAddToOrder = (dish: Dish) => {
-    dispatch(addItem({
-      id: dish._id,
-      name: dish.name,
-      price: dish.price,
-      currency: dish.currency,
-      image_url: dish.image_url,
-      quantity: 1
-    }));
+    dispatch(
+      addItem({
+        id: dish._id,
+        name: dish.name,
+        price: dish.price,
+        currency: dish.currency,
+        image_url: dish.image_url,
+        quantity: 1,
+      })
+    );
   };
 
   return (
     <div className="menu-page">
       {/* Categories Navigation */}
       <div className="categories-scroll" ref={categoriesScrollRef}>
-        {processedCategories.map(category => (
+        {processedCategories.map((category) => (
           <button
             key={category.id}
             data-category={category.id}
-            className={`category-tab ${activeCategory === category.id ? 'active' : ''}`}
+            className={`category-tab ${
+              activeCategory === category.id ? "active" : ""
+            }`}
             onClick={() => handleCategoryClick(category.id)}
           >
             {category.name}
@@ -112,7 +128,7 @@ const MenuPage: React.FC = () => {
 
       {/* Content Area */}
       <div className="menu-content" ref={contentRef}>
-        {processedCategories.map(category => (
+        {processedCategories.map((category) => (
           <div
             key={category.id}
             ref={(el: HTMLDivElement | null) => {
@@ -124,30 +140,36 @@ const MenuPage: React.FC = () => {
               <h2>{category.name}</h2>
             </div>
             <div className="dishes-container">
-              {category.dishes.map(dish => (
+              {category.dishes.map((dish) => (
                 <div key={dish._id} className="dish-card">
                   <div className="dish-info">
                     <div className="dish-header">
                       <h3 className="dish-name">{dish.name}</h3>
-                      {dish.is_new && <span className="new-badge">{t('menu.new')}</span>}
+                      {dish.is_new && (
+                        <span className="new-badge">{t("menu.new")}</span>
+                      )}
                     </div>
-                    <p className="dish-price">{dish.price} {dish.currency}</p>
+                    <p className="dish-price">
+                      {dish.price} {dish.currency}
+                    </p>
                     <p className="dish-description">{dish.description}</p>
                     {dish.weight && (
                       <p className="nutrition-info">{dish.weight}</p>
                     )}
-                    <button 
-                      className="add-to-order-button"
-                      onClick={() => handleAddToOrder(dish)}
-                    >
-                      {t('menu.addToOrder')}
-                    </button>
+                    {userRole === "waiter" && (
+                      <button
+                        className="add-to-order-button"
+                        onClick={() => handleAddToOrder(dish)}
+                      >
+                        {t("menu.addToOrder")}
+                      </button>
+                    )}
                   </div>
                   <div className="dish-image-container">
                     {dish.image_url && (
-                      <img 
-                        src={`http://localhost:5000${dish.image_url}`} 
-                        alt={dish.name} 
+                      <img
+                        src={`http://localhost:5000${dish.image_url}`}
+                        alt={dish.name}
                         className="dish-image"
                         loading="lazy"
                       />
@@ -166,4 +188,4 @@ const MenuPage: React.FC = () => {
   );
 };
 
-export default MenuPage; 
+export default MenuPage;
