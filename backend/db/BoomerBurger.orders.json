@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "6849bdb15d5cefad68932318"
+  },
+  "tableNumber": 1,
+  "items": [
+    {
+      "name": "Зелений салат з мічеладою",
+      "price": 250,
+      "quantity": 1,
+      "_id": {
+        "$oid": "6849bdb15d5cefad68932319"
+      }
+    }
+  ],
+  "waiterId": "waiter",
+  "status": "ready",
+  "createdAt": {
+    "$date": "2025-06-11T17:32:33.381Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6849c0085d5cefad6893233d"
+  },
+  "tableNumber": 4,
+  "items": [
+    {
+      "name": "Зелений салат з мічеладою",
+      "price": 250,
+      "quantity": 1,
+      "_id": {
+        "$oid": "6849c0085d5cefad6893233e"
+      }
+    },
+    {
+      "name": "@epic.boomer salad",
+      "price": 258,
+      "quantity": 1,
+      "_id": {
+        "$oid": "6849c0085d5cefad6893233f"
+      }
+    },
+    {
+      "name": "Mozzarella fries",
+      "price": 225,
+      "quantity": 1,
+      "_id": {
+        "$oid": "6849c0085d5cefad68932340"
+      }
+    }
+  ],
+  "waiterId": "waiter",
+  "status": "ready",
+  "createdAt": {
+    "$date": "2025-06-11T17:42:32.299Z"
+  },
+  "__v": 0
+}]

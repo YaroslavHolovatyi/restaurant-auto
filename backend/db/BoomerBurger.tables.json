@@ -9,4 +9,16 @@
   "number": 2,
   "seats": 6,
   "status": "occupied"
+},
+{
+  "_id": 3,
+  "number": 3,
+  "seats": 4,
+  "status": "booked"
+},
+{
+  "_id": 4,
+  "number": 4,
+  "seats": 4,
+  "status": "free"
 }]

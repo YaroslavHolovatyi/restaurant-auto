@@ -27,4 +27,14 @@
   "password": "waiter",
   "role": "waiter",
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68495610fce1be45d61c19d1"
+  },
+  "name": "Andriy",
+  "username": "Cook2",
+  "password": "cook2",
+  "role": "cook",
+  "__v": 0
 }]

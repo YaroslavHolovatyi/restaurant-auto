@@ -431,4 +431,49 @@
   "weight": "250мл",
   "is_new": false,
   "available": true
+},
+{
+  "_id": {
+    "$oid": "68484aaf7a5bd9745c2f2cc3"
+  },
+  "name": "dasndkjasnd",
+  "price": 450,
+  "currency": "UAH",
+  "description": "daslknkdjbask bkajsdn kjasnd kjasnd kjnasd kjn",
+  "category": "burgers",
+  "image_url": "/uploads/menu/1749568175793-wkeCqsL-JIMGTrI-OGCFlll.jpeg",
+  "weight": "440",
+  "is_new": true,
+  "available": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68495469fce1be45d61c19b5"
+  },
+  "name": "UNGABUNGA BURGER",
+  "price": 550,
+  "currency": "UAH",
+  "description": "BIG MEAT, BIG BREAD, GOOD EAT!",
+  "category": "burgers",
+  "image_url": "/uploads/menu/1749636201695-images.jfif",
+  "weight": "570",
+  "is_new": true,
+  "available": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684955c9fce1be45d61c19c5"
+  },
+  "name": "Зелений салат з міні овочами",
+  "price": 20,
+  "currency": "UAH",
+  "description": "Ромен, шпинат, рукола, соус вінiгер, мічелада, цедра лимону.",
+  "category": "salads",
+  "image_url": "../assets/formenu/image1.png",
+  "weight": null,
+  "is_new": true,
+  "available": true,
+  "__v": 0
 }]
