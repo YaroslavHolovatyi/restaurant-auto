@@ -62,10 +62,10 @@ const TablesPage: React.FC = () => {
         const data = await response.json();
         setTables(data);
       } else {
-        console.error('Failed to fetch tables');
+        console.error("Failed to fetch tables");
       }
     } catch (error) {
-      console.error('Error fetching tables:', error);
+      console.error("Error fetching tables:", error);
     }
   };
 
@@ -76,10 +76,10 @@ const TablesPage: React.FC = () => {
         const data = await response.json();
         setDatabaseOrders(data);
       } else {
-        console.error('Failed to fetch orders');
+        console.error("Failed to fetch orders");
       }
     } catch (error) {
-      console.error('Error fetching orders:', error);
+      console.error("Error fetching orders:", error);
     }
   };
 
@@ -115,12 +115,16 @@ const TablesPage: React.FC = () => {
   };
 
   const getCurrentTableOrder = (tableNumber: number): DatabaseOrder | null => {
-    return databaseOrders.find(
-      (order) => order.tableNumber === tableNumber && order.status !== "ready"
-    ) || null;
+    return (
+      databaseOrders.find(
+        (order) => order.tableNumber === tableNumber && order.status !== "ready"
+      ) || null
+    );
   };
 
-  const handleStatusChange = async (newStatus: "ordered" | "cooking" | "ready") => {
+  const handleStatusChange = async (
+    newStatus: "ordered" | "cooking" | "ready"
+  ) => {
     if (!selectedTable || userRole !== "cook") {
       alert("Only cooks can change order status");
       return;
@@ -128,7 +132,8 @@ const TablesPage: React.FC = () => {
 
     // Find the database order for this table
     const tableOrder = databaseOrders.find(
-      (order) => order.tableNumber === selectedTable.number && order.status !== "ready"
+      (order) =>
+        order.tableNumber === selectedTable.number && order.status !== "ready"
     );
 
     if (!tableOrder) {
@@ -140,7 +145,7 @@ const TablesPage: React.FC = () => {
     const validTransitions: Record<string, string[]> = {
       ordered: ["cooking"],
       cooking: ["ready"],
-      ready: []
+      ready: [],
     };
 
     if (!validTransitions[tableOrder.status]?.includes(newStatus)) {
@@ -149,33 +154,36 @@ const TablesPage: React.FC = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${tableOrder._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...tableOrder, status: newStatus }),
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/orders/${tableOrder._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...tableOrder, status: newStatus }),
+        }
+      );
 
       if (response.ok) {
         const updatedOrder = await response.json();
-        
+
         // Update the database orders state
         setDatabaseOrders((prev) =>
           prev.map((order) =>
             order._id === tableOrder._id ? updatedOrder : order
           )
         );
-        
+
         // Update the order status state
         setOrderStatus((prev) => ({
           ...prev,
           [selectedTable.number]: newStatus,
         }));
-        
+
         // Refresh orders to ensure consistency
         await fetchOrders();
-        
+
         alert(`Order status updated to ${newStatus}`);
       } else {
         const errorData = await response.json();
@@ -183,7 +191,11 @@ const TablesPage: React.FC = () => {
       }
     } catch (error) {
       console.error("Error updating order status:", error);
-      alert(`Failed to update order status: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      alert(
+        `Failed to update order status: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`
+      );
     }
   };
 
@@ -222,16 +234,16 @@ const TablesPage: React.FC = () => {
       if (response.ok) {
         const newOrder = await response.json();
         alert(`Order successfully placed for Table ${selectedTable.number}!`);
-        
+
         // Clear the local order for this table
         setOrder((prev) => ({
           ...prev,
           [selectedTable.number]: [],
         }));
-        
+
         // Add the new order to database orders
         setDatabaseOrders((prev) => [...prev, newOrder]);
-        
+
         // Update order status to "ordered"
         setOrderStatus((prev) => ({
           ...prev,
@@ -246,34 +258,38 @@ const TablesPage: React.FC = () => {
     }
   };
 
-  const handleTableStatusChange = async (tableId: string, newStatus: "free" | "occupied" | "booked") => {
+  const handleTableStatusChange = async (
+    tableId: string,
+    newStatus: "free" | "occupied" | "booked"
+  ) => {
     if (userRole !== "admin" && userRole !== "waiter") {
       alert("Only admins and waiters can change table status");
       return;
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/tables/${tableId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status: newStatus }),
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/tables/${tableId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
 
       if (response.ok) {
         const updatedTable = await response.json();
-        
+
         // Update the tables state
         setTables((prev) =>
-          prev.map((table) =>
-            table._id === tableId ? updatedTable : table
-          )
+          prev.map((table) => (table._id === tableId ? updatedTable : table))
         );
-        
+
         // Refresh tables to ensure consistency
         await fetchTables();
-        
+
         alert(`Table status updated to ${newStatus}`);
       } else {
         const errorData = await response.json();
@@ -281,7 +297,11 @@ const TablesPage: React.FC = () => {
       }
     } catch (error) {
       console.error("Error updating table status:", error);
-      alert(`Failed to update table status: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      alert(
+        `Failed to update table status: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`
+      );
     }
   };
 
@@ -309,7 +329,12 @@ const TablesPage: React.FC = () => {
                 {userRole === "admin" || userRole === "waiter" ? (
                   <select
                     value={table.status}
-                    onChange={(e) => handleTableStatusChange(table._id, e.target.value as "free" | "occupied" | "booked")}
+                    onChange={(e) =>
+                      handleTableStatusChange(
+                        table._id,
+                        e.target.value as "free" | "occupied" | "booked"
+                      )
+                    }
                     style={{
                       padding: "0.25rem 0.5rem",
                       borderRadius: "4px",
@@ -321,12 +346,18 @@ const TablesPage: React.FC = () => {
                           : table.status === "occupied"
                           ? "orange"
                           : "blue",
-                      fontWeight: "bold"
+                      fontWeight: "bold",
                     }}
                   >
-                    <option value="free" style={{ color: "green" }}>free</option>
-                    <option value="occupied" style={{ color: "orange" }}>occupied</option>
-                    <option value="booked" style={{ color: "blue" }}>booked</option>
+                    <option value="free" style={{ color: "green" }}>
+                      free
+                    </option>
+                    <option value="occupied" style={{ color: "orange" }}>
+                      occupied
+                    </option>
+                    <option value="booked" style={{ color: "blue" }}>
+                      booked
+                    </option>
                   </select>
                 ) : (
                   <span
@@ -337,7 +368,7 @@ const TablesPage: React.FC = () => {
                           : table.status === "occupied"
                           ? "orange"
                           : "blue",
-                      fontWeight: "bold"
+                      fontWeight: "bold",
                     }}
                   >
                     {table.status}
@@ -398,32 +429,54 @@ const TablesPage: React.FC = () => {
                   <strong>Order Status:</strong>
                   <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
                     {(() => {
-                      const currentOrder = getCurrentTableOrder(selectedTable.number);
+                      const currentOrder = getCurrentTableOrder(
+                        selectedTable.number
+                      );
                       const currentStatus = currentOrder?.status || null;
-                      
+
                       return (
                         <>
                           <Button
                             size="small"
-                            variant={currentStatus === "ordered" ? "contained" : "outlined"}
+                            variant={
+                              currentStatus === "ordered"
+                                ? "contained"
+                                : "outlined"
+                            }
                             color="primary"
-                            disabled={userRole !== "cook" || !currentOrder || currentStatus !== "ordered"}
+                            disabled={
+                              userRole !== "cook" ||
+                              !currentOrder ||
+                              currentStatus !== "ordered"
+                            }
                             onClick={() => handleStatusChange("cooking")}
                           >
                             Ordered
                           </Button>
                           <Button
                             size="small"
-                            variant={currentStatus === "cooking" ? "contained" : "outlined"}
+                            variant={
+                              currentStatus === "cooking"
+                                ? "contained"
+                                : "outlined"
+                            }
                             color="secondary"
-                            disabled={userRole !== "cook" || !currentOrder || currentStatus !== "cooking"}
+                            disabled={
+                              userRole !== "cook" ||
+                              !currentOrder ||
+                              currentStatus !== "cooking"
+                            }
                             onClick={() => handleStatusChange("ready")}
                           >
                             Cooking
                           </Button>
                           <Button
                             size="small"
-                            variant={currentStatus === "ready" ? "contained" : "outlined"}
+                            variant={
+                              currentStatus === "ready"
+                                ? "contained"
+                                : "outlined"
+                            }
                             color="success"
                             disabled={true}
                           >
@@ -434,8 +487,15 @@ const TablesPage: React.FC = () => {
                     })()}
                   </div>
                   {getCurrentTableOrder(selectedTable.number) && (
-                    <div style={{ fontSize: "0.9rem", color: "#666", marginTop: "0.5rem" }}>
-                      Current Status: {getCurrentTableOrder(selectedTable.number)?.status}
+                    <div
+                      style={{
+                        fontSize: "0.9rem",
+                        color: "#666",
+                        marginTop: "0.5rem",
+                      }}
+                    >
+                      Current Status:{" "}
+                      {getCurrentTableOrder(selectedTable.number)?.status}
                     </div>
                   )}
                 </div>
